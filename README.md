@@ -24,7 +24,7 @@ varnish-cache-bosh-release$ bosh upload-release
 cf-deployment$ bosh -d cf deploy -n cf-deployment.yml \
     -o operations/bosh-lite.yml \
     -o operations/use-compiled-releases.yml \
-    -o ~/varnish-cache-bosh-release/manifests/add-varnish-cache.yml
+    -o ~/varnish-cache-bosh-release/manifests/add-varnish-cache.yml \
     -v system_domain=bosh-lite.com
 ```
 
