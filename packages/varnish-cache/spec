@@ -1,0 +1,7 @@
+---
+name: varnish-cache 
+
+dependencies: []
+
+files:
+- varnish-cache/**/*

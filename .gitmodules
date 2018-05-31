@@ -1,0 +1,3 @@
+[submodule "src/varnish-cache"]
+	path = src/varnish-cache
+	url = https://github.com/varnishcache/varnish-cache.git

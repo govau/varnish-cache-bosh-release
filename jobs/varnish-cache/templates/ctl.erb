@@ -1,0 +1,34 @@
+#!/bin/bash -e
+
+RUN_DIR=/var/vcap/sys/run/varnish-cache
+LOG_DIR=/var/vcap/sys/log/varnish-cache
+PIDFILE=${RUN_DIR}/pid
+CONFIG_FILE=/var/vcap/jobs/varnish-cache/etc/default.vcl
+
+mkdir -p $RUN_DIR $LOG_DIR
+#exec >>${LOG_DIR}/varnish-cache.ctl.log 2>&1
+
+case $1 in
+
+	start)
+		chown -R vcap:vcap $RUN_DIR $LOG_DIR
+# TODO confirm ulimit
+# TODO confirm ports
+# exec chpst -u vcap:vcap
+		/var/vcap/packages/varnish-cache/sbin/varnishd <%= p("varnishd-switches") %> -n /var/vcap/data/varnish-cache/tmp -f $CONFIG_FILE 
+		pidof varnishd > $PIDFILE
+		;;
+
+	stop)
+		kill -9 `cat $PIDFILE`
+		rm -f $PIDFILE
+		;;
+
+	*)
+		echo "Usage: ctl {start|stop}"
+		exit 1
+		;;
+
+esac
+
+exit 0

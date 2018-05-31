@@ -1,0 +1,8 @@
+---
+blobstore:
+  provider: local
+  options:
+    blobstore_path: /tmp/varnish-cache-blobs
+  final_name: varnish-cache
+
+name: varnish-cache

@@ -1,0 +1,29 @@
+---
+name: varnish-cache
+
+packages:
+  - varnish-cache
+
+templates: 
+  ctl.erb: bin/ctl
+  varnish_default.vcl.erb: etc/default.vcl
+
+properties:
+  origin-port:
+    description: 'Origin port'
+    default: 80
+  varnishd-switches:
+    description: 'Daemon runtime options, see https://varnish-cache.org/docs/trunk/reference/varnishd.html'
+    default: '-a :6081 -T localhost:6062 -s malloc,256m'
+  varnish-config:
+    description: 'The Varnish configuration'
+    default: |
+      sub vcl_recv {
+      }
+      
+      sub vcl_backend_response {
+      }
+      
+      sub vcl_deliver {
+        unset resp.http.Via;
+      }

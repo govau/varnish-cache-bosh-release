@@ -1,0 +1,14 @@
+# for Ubuntu 14.04 (Trusty)
+set -e -x
+
+echo "Install dependencies"
+sudo apt-get update -y
+sudo apt-get install -y automake libtool python-docutils libpcre3-dev
+
+echo "Build and install"
+pushd varnish-cache
+  ./autogen.sh
+  ./configure --prefix=${BOSH_INSTALL_TARGET}
+  make
+  make install
+popd

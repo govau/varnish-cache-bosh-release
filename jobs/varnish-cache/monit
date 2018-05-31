@@ -1,0 +1,5 @@
+check process varnish-cache
+  with pidfile /var/vcap/sys/run/varnish-cache/pid
+  start program "/var/vcap/jobs/varnish-cache/bin/ctl start"
+  stop program "/var/vcap/jobs/varnish-cache/bin/ctl stop"
+  group vcap

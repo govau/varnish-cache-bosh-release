@@ -1,0 +1,13 @@
+---
+
+- type: replace
+  path: /releases/-
+  value:
+    name: varnish-cache
+    version: latest
+
+- type: replace
+  path: /instance_groups/name=router/jobs/-
+  value:
+    name: varnish-cache 
+    release: varnish-cache 
